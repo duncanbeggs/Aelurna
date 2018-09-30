@@ -1,20 +1,33 @@
 import time
 import sys
+import os
 
 
 # Take a room as an argument and print its description
 
 def rpg_print(output_text):
-    time.sleep(.1)
-    sys.stdout.flush()
-    for s in output_text:
-        print(s, end='')
-        # time.sleep(1.2)
-        # sys.stdout.flush()
-    sys.stdout.flush()
-    print("\n*****")
-    time.sleep(0.4)
-    return
+    if os.name == 'posix':
+        sys.stdout.flush()
+        for s in output_text:
+            print(s, end='')
+            time.sleep(.05)
+            sys.stdout.flush()
+        sys.stdout.flush()
+        print("\n*****")
+        time.sleep(1)
+        return
+        pass
+    else:
+        time.sleep(.1)
+        sys.stdout.flush()
+        for s in output_text:
+            print(s, end='')
+            # time.sleep(1.2)
+            # sys.stdout.flush()
+        sys.stdout.flush()
+        print("\n*****")
+        time.sleep(0.4)
+        return
 
 
 def print_startup(first_room):
